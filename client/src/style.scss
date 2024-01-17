@@ -239,6 +239,8 @@
  
             .content{
                 flex:5;
+               
+              
              
 
                 img{
@@ -254,6 +256,7 @@
                     font-size: 10px;
                     font-weight: 400;
                     margin-top: 5px;
+                    
 
                     img{
 
@@ -264,17 +267,53 @@
                     }
 
                     .info{
-                        
-                        span{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                       
+                      
+                        .username{
                             font-weight: 700;
                         }
                     }
+
+                    .modify{
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+                        gap: 10px;
+                        
+
+                        img{
+                            width: 20px;
+                            height: 20px;
+                            cursor: pointer;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            transition: all 0.5s ease;
+
+                            &:hover{
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
                 } 
+
+                h1{
+                    font-size: 42px;
+                    color: #333;
+                }
+
+                p{
+                    text-align: justify;
+                    line-height: 30px;
+                }
             }
 
-            .menu{
+            .menu {
                 flex:2;
-            }
+                
+            } 
         }
 
 
