@@ -1,0 +1,207 @@
+
+
+.app {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+    "GRAD" 0;
+   
+    .link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .container {
+
+         width: 1024px;
+
+
+        // LOGIN AND REGISTER
+
+        .auth {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+           
+            background-color: lightblue;
+           
+
+            h1 {
+                font-size: 2.5rem;
+                color: teal;
+            }
+
+            form{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+               
+              
+                
+                
+
+                input {
+                    padding: 10px;
+                    border: none;
+                    border-bottom: 1px solid gray;
+                    background-color: lightblue;
+                    margin: 7px;
+                }
+                
+                p{
+                    font-size: 0.8rem;
+                    color: red;
+                    display: none;
+                }
+
+                button {
+                    padding: 10px 20px;
+                    background-color: teal;
+                    cursor: pointer;
+                    color: white;
+                    margin: 10px;
+                    border: none;
+                }
+
+                span{
+                    font-size: 0.9rem;
+                    padding-top: 10px;
+                    
+                }
+            }
+        }
+
+        // NAVBAR
+        .navbar{
+
+           
+            width: 100%;
+            
+
+            .container{
+                
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0px 10px;
+               
+
+                .logo{
+                    img{
+                        width:120px;
+                    }
+
+                }
+                .links{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    font-size: 1rem;
+
+                    h6{
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
+
+                    span{
+                        cursor: pointer;
+                    }
+
+                    .write{
+                        width: 50px;
+                        height: 50px;
+                        background-color: lightgreen;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: 500;
+                         border: 1px solid white ;
+
+                        &:hover {
+                            background-color: white;
+                            color: teal;
+                            border: 1px solid lightgreen ;
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        // FOOTER
+
+        footer{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #90ee90;
+            padding: 0px 10px;
+            margin-top: 100px;
+
+            img{
+                width: 100px;
+                
+            }
+            span{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: normal;
+            }
+        }
+
+        // HOME
+
+        .home{
+
+            .posts{
+                display: flex;
+                gap: 150px;
+                flex-direction: column;
+
+                .post{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 50px;
+
+                    &:nth-child(2n+1){
+                        flex-direction: row-reverse;
+                    }
+
+                    .img{
+                        flex: 2;
+
+                        img{
+                            width:100%;
+                            max-height: 500px;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .content{
+                        flex:3;
+                    }
+                }
+
+
+            }
+
+        }
+
+
+    }
+
+
+}
