@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const dummyPosts = [
   {
@@ -41,9 +42,11 @@ const Menu = () => {
       <h3>Other posts you may like</h3>
       {dummyPosts.map((post) => (
         <div className="post" key={post.id}>
-          <img src={post.img} alt="" />
-              <h5>{post.title}</h5>
-              <button>Read More</button>
+          <img src={post.image} alt="" />
+          <h5>{post.title}</h5>
+          <Link to={`/post/${post.id}`} className="link">
+            <button>Read More</button>
+          </Link>
         </div>
       ))}
     </div>
