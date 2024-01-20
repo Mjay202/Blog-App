@@ -29,8 +29,9 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            height: 90vh;
            
-            background-color: lightblue;
+            
            
 
             h1 {
@@ -52,7 +53,7 @@
                     padding: 10px;
                     border: none;
                     border-bottom: 1px solid gray;
-                    background-color: lightblue;
+                    background-color: white;
                     margin: 7px;
                 }
                 
@@ -62,6 +63,11 @@
                     display: none;
                 }
 
+                span .link{
+                    color: teal;
+                    text-decoration: underline;
+                }
+
                 button {
                     padding: 10px 20px;
                     background-color: teal;
@@ -69,6 +75,8 @@
                     color: white;
                     margin: 10px;
                     border: none;
+
+                    
                 }
 
                 span{
