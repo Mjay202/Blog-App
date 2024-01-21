@@ -1,7 +1,8 @@
 import { db } from "../db.js";
 import CryptoJS from "crypto-js"
+import dotenv from "dotenv";
 
-
+dotenv.config();
 
 export const register = (req, res) => {
     // CHECK EXISTING USERS
@@ -17,7 +18,8 @@ export const register = (req, res) => {
 
         // HASHING THE PASSWORD
 
-        const hash = CryptoJS.AES.encrypt(req.body.password, "Secret Passphrase");
+        const hash = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString();
+        
         // SAVING NOW
 
         const q = "INSERT INTO users(`fname`, `lname`, `email`, `password`  ) VALUES (?)"
