@@ -1,4 +1,5 @@
-import {db} from "../db.js"
+import { db } from "../db.js";
+import bcrypt from "bycrypt";
 
 
 
@@ -15,7 +16,25 @@ export const register = (req, res) => {
         // SAVE THE USER DETAILS
 
         // HASHING THE PASSWORD
-        
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(req.body.password, salt);
+
+        // SAVING NOW
+
+        const q = "INSERT INTO users(`fname`, `lname`, `email`, `password`  ) VALUES (?)"
+
+        const values = [
+            req.body.fname,
+            req.body.lname,
+            req.body.email,
+            hash
+        ]
+
+        db.query(q, [values], (err, data) => {
+            if (err) return res.json(err)
+            return res.status(200).json("User is registered successfully")
+        }) 
     })
     
 };
