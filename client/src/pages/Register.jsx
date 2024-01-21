@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const Register = () => {
 
-  const [userDeatils, setuserDeatils] = useState({
+  const [userDetails, setuserDetails] = useState({
     fname: '',
     lname: '',
     email: '',
@@ -12,7 +13,7 @@ const Register = () => {
   })
 
   const handleChange = e => {
-    setuserDeatils(prev => ({
+    setuserDetails(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }))
@@ -22,7 +23,8 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      
+      const res = await axios.post("http://localhost:5000/api/auth/register", userDetails);
+      console.log(res);
     } catch (err) {
       console.log(err)
     }

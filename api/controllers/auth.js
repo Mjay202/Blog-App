@@ -22,11 +22,10 @@ export const register = (req, res) => {
         
         // SAVING NOW
 
-        const q = "INSERT INTO users(`fname`, `lname`, `email`, `password`  ) VALUES (?)"
+        const q = "INSERT INTO users ( `uname`, `email`, `password`  ) VALUES (?)"
 
         const values = [
-            req.body.fname,
-            req.body.lname,
+            req.body.uname,
             req.body.email,
             hash
         ]
