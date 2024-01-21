@@ -18,7 +18,10 @@ const Register = () => {
     }))
   }
 
-  console.log(userDeatils);
+  const handleSubmit = e => {
+    e.preventDefault();
+    
+  }
   return (
     <>
       <div className="auth">
@@ -29,7 +32,7 @@ const Register = () => {
           <input type="email" placeholder="Email" name='email' onChange={handleChange}/>
           <input type="text" placeholder="Password" name='password' onChange={handleChange}/>
           <p>This is an error!</p>
-          <button>Register</button>
+          <button onClick={handleSubmit}>Register</button>
           <span>
             Have an account? <Link className="link" to="/login">Login</Link>{" "}
           </span>

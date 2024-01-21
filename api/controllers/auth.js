@@ -1,5 +1,5 @@
 import { db } from "../db.js";
-import bcrypt from "bycrypt";
+import CryptoJS from "crypto-js"
 
 
 
@@ -17,9 +17,7 @@ export const register = (req, res) => {
 
         // HASHING THE PASSWORD
 
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(req.body.password, salt);
-
+        const hash = CryptoJS.AES.encrypt(req.body.password, "Secret Passphrase");
         // SAVING NOW
 
         const q = "INSERT INTO users(`fname`, `lname`, `email`, `password`  ) VALUES (?)"
