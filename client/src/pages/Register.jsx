@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 
+
 const Register = () => {
+
+  const [userDeatils, setuserDeatils] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    password: ''
+  })
+
+  const handleChange = e => {
+    setuserDeatils(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  console.log(userDeatils);
   return (
     <>
       <div className="auth">
         <h1>Register</h1>
         <form action="">
-          <input type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
-          <input type="email" placeholder="Email" />
-          <input type="text" placeholder="Password" />
+          <input type="text" placeholder="First Name" name='fname'  onChange={handleChange} />
+          <input type="text" placeholder="Last Name" name='lname'  onChange={handleChange}/>
+          <input type="email" placeholder="Email" name='email' onChange={handleChange}/>
+          <input type="text" placeholder="Password" name='password' onChange={handleChange}/>
           <p>This is an error!</p>
           <button>Register</button>
           <span>
