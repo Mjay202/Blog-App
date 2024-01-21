@@ -6,8 +6,7 @@ import axios from "axios";
 const Register = () => {
 
   const [userDetails, setuserDetails] = useState({
-    fname: '',
-    lname: '',
+    uname: '',
     email: '',
     password: ''
   })
@@ -34,8 +33,7 @@ const Register = () => {
       <div className="auth">
         <h1>Register</h1>
         <form action="">
-          <input type="text" placeholder="First Name" name='fname'  onChange={handleChange} />
-          <input type="text" placeholder="Last Name" name='lname'  onChange={handleChange}/>
+          <input type="text" placeholder="Username" name='uname'  onChange={handleChange}/>
           <input type="email" placeholder="Email" name='email' onChange={handleChange}/>
           <input type="text" placeholder="Password" name='password' onChange={handleChange}/>
           <p>This is an error!</p>
