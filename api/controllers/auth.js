@@ -58,6 +58,7 @@ export const login =  (req, res) => {
           data[0].password,
           process.env.PASS_SEC
         ).toString(CryptoJS.enc.Utf8);
+
         if (req.body.password !== decryptedPassword) return res.status(400).json("Wrong username or password!")
         
         else {
@@ -66,7 +67,11 @@ export const login =  (req, res) => {
             const { password, ...other } = data[0];
 
             res
-              .cookie("access_token", token, { httpOnly: true })
+                .cookie(
+                    "access_token",
+                    token,
+                    { httpOnly: false },
+              )
               .status(200)
               .json(other);
         }
