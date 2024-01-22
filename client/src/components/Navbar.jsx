@@ -32,7 +32,7 @@ const Navbar = () => {
             <span> MARY</span>
             <span>Logout</span>
             <span className='write'>
-              <Link className='link' to='/write'>WRITE</Link>
+              <Link className='link' to='/create'>WRITE</Link>
             </span>
           </div>
         </div>

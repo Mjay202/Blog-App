@@ -5,7 +5,7 @@ import "react-quill/dist/quill.snow.css";
 
 const Create = () => {
   
-const [value, setValue] = useState("");
+const [value, setValue] = useState("Let's publish!");
   
   return (
     <div className="create">
