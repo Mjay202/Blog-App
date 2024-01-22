@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 const Login = () => {
 
@@ -27,9 +27,11 @@ const Login = () => {
         "http://localhost:5000/api/auth/login",
         userDetails
       );
+      console.log(res)
       navigate("/");
     } catch (err) {
       seterrorMsg(err.response.data);
+      console.log(err);
     }
   };
 
