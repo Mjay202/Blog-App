@@ -1,6 +1,7 @@
 import { db } from "../db.js";
 import CryptoJS from "crypto-js"
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
