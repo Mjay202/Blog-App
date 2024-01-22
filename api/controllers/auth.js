@@ -53,9 +53,14 @@ export const login = (req, res) => {
       if (data.length == 0) return res.status(404).json("User not found!");
 
         // CHECK IF PASSWORD IS CORRECT
-        const password = CryptoJS.AES.decrypt(data[0].password, process.env.PASS_SEC).toString();
-        if (req.body.password !== password) return res.status(400).json("Wrong username or password!")
+        const decryptedPassword = CryptoJS.AES.decrypt(data[0].password, process.env.PASS_SEC).toString();
+        if (req.body.password !== decryptedPassword) return res.status(400).json("Wrong username or password!")
         
+        const token = jwt.sign({ id: data[0].id }, process.env.JWT_KEY);
+
+        const {password, ...other} = data[0]
+
+        res.cookie("access_token", token, {httpOnly: true}).status(200).json(other)
     })
 
    
