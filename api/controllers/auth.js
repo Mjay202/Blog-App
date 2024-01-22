@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+// REGISTER PROCESS
+
 export const register = (req, res) => {
     // CHECK EXISTING USERS
 
@@ -12,7 +14,7 @@ export const register = (req, res) => {
 
     db.query(q, [email], (err, data) => {
         if (err) return res.json(err)
-        if (data.length) return res.status(409).json('User already exist');
+        if (data.length) return res.status(409).json('User already exist!');
 
         // SAVE THE USER DETAILS
 
@@ -38,8 +40,24 @@ export const register = (req, res) => {
     
 };
 
+// LOGIN PROCESS
 export const login = (req, res) => {
+    // CHECK IF REGISTERED
 
+    const q = "SELECT FROM users WHERE email = ?"
+    const email = req.body.email
+
+    db.query(q, [email], (err, data) => {
+      if (err) return res.json(err);
+      if (data.length == 0) return res.status(404).json("User not found!");
+
+        // CHECK IF PASSWORD IS CORRECT
+        const password = CryptoJS.AES.decrypt(data[0].password, process.env.PASS_SEC).toString();
+        if (req.body.password !== password) return res.status(400).json("Wrong username or password!")
+        
+    })
+
+   
 };
 export const logout = (req, res) => {
 
