@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 
@@ -55,9 +56,9 @@ const Menu = ({cat}) => {
   return (
     <div className="menu">
       <h3>Other posts you may like</h3>
-      {dummyPosts.map((post) => (
+      {posts.map((post) => (
         <div className="post" key={post.id}>
-          <img src={post.image} alt="" />
+          <img src={post.img} alt="" />
           <h5>{post.title}</h5>
           <Link to={`/post/${post.id}`} className="link">
             <button>Read More</button>
