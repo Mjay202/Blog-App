@@ -36,7 +36,9 @@ const SinglePost = () => {
   const handleDelete = async() => {
     
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`);
+      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+        withCredentials: true,
+      });
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -57,7 +59,7 @@ const SinglePost = () => {
               <div>Posted {moment(postCont.date).fromNow()}</div>
             )}
           </div>
-          {currentUser.uname === postCont.uname && (
+          {currentUser && currentUser.uname === postCont.uname && (
             <div className="modify">
               <Link to="/create?/edit=2">
                 <img src={edit} alt="" />

@@ -1,5 +1,5 @@
 import { db } from "../db.js"
-import { jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 
 export const getPosts = (req, res) => {
@@ -32,7 +32,7 @@ export const addPost = (req, res) => {
 export const deletePost = (req, res) => {
   //  CHECK IF THERE IS A TOKEN
 
-  const token = req.cookie.token
+  const token = req.cookies.access_token;
 
   if (!token) return res.status(401).json('Not authenticated! Please login');
 

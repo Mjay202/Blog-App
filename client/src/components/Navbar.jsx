@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
 import logo from '../assets/jayxinblog.svg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/authContext';
 
 const Navbar = () => {
 
+    const navigate = useNavigate()
     const { logout, currentUser } = useContext(AuthContext);
+    const loggedOut = () => {
+      logout();
+      navigate("/");
+    }
   return (
     <>
       <div className="navbar">
@@ -38,7 +43,7 @@ const Navbar = () => {
             {currentUser ? (
               <>
                 <span>{ currentUser.uname}</span>
-                <span onClick={logout}>Logout</span>
+                <span onClick={loggedOut}>Logout</span>
               </>
             ) : (
               <Link className="link" to="/login">
