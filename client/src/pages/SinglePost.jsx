@@ -11,26 +11,26 @@ const SinglePost = () => {
   const id = location.pathname.split('/')[2];
   console.log(id);
 
-  const [posts, setposts] = useState({});
+  const [postCont, setpostCont] = useState({});
 
   useEffect(() => {
-    console.log("ACTUALLY WORKING");
-    const fetchPosts = async () => {
+    
+    const fetchpostCont = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
-        setposts(res.data);
+        setpostCont(res.data[0]);
         console.log(res.data);
       } catch (err) {
         console.log(err);
       }
     };
-    fetchPosts();
+    fetchpostCont();
   }, [id]);
 
   return (
     <div className="single">
       <div className="content">
-        <img src="https://source.unsplash.com/800x600/?technology" alt="" />
+        <img src={postCont.img} alt="" />
         <div className="user">
           <img
             src="https://source.unsplash.com/150x150/?portrait"
@@ -51,40 +51,9 @@ const SinglePost = () => {
           </div>
         </div>
 
-        <h1 className="title">Culinary Delights from Around the World</h1>
+        <h1 className="title">{ postCont.title}</h1>
         <p className="main-content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-          nemo deleniti nisi vitae eligendi beatae, ipsa sequi omnis quia totam
-          optio voluptatum quas, quidem aliquid. Molestias, expedita. Atque,
-          vero assumenda. Debitis incidunt animi quaerat! Magnam, eum repellat
-          nisi ea dignissimos tempore, quos amet, officiis omnis repudiandae
-          corporis voluptatem aliquam dolores ipsa! Quia, labore veritatis.
-          Nostrum eum inventore nisi consequuntur praesentium. Corporis sed iste
-          expedita eos a laboriosam asperiores repellendus atque beatae placeat
-          quae corrupti fugit, delectus ut quas ex esse sint porro dolorum culpa
-          doloremque nostrum? Quae dignissimos deserunt quo! Quidem quae dolorem
-          quo quis sed molestiae corporis, maiores consequatur sunt, officia
-          ipsum voluptatum quisquam labore mollitia. Placeat eveniet dolorem
-          repudiandae harum ullam, architecto ipsum distinctio nesciunt aliquid
-          nulla eaque? Ut doloremque corrupti nam?
-          <br />
-          Perspiciatis, fugit minima quas quidem vel obcaecati earum nobis
-          quisquam, et sed quibusdam illum reiciendis, voluptas dicta natus fuga
-          quasi a ex distinctio placeat. Reiciendis, nostrum! Minus eveniet
-          asperiores dolorum aliquam deleniti dolores velit cupiditate, rem
-          commodi aut enim adipisci quidem magnam? Aliquid error dicta inventore
-          nemo mollitia autem eum, qui corrupti. Quaerat quasi cupiditate
-          obcaecati! Nemo, alias. Ab eum dolorem, quo in nulla officiis
-          doloribus non ex. Voluptas amet doloribus illum quod asperiores
-          officiis molestiae possimus soluta, totam sed. Molestiae assumenda
-          quod illo veritatis sequi! Fuga explicabo repellendus deserunt
-          accusantium praesentium harum voluptatem repudiandae obcaecati
-          consectetur alias, ad qui, esse maxime mollitia possimus
-          necessitatibus reiciendis consequatur quia asperiores. Soluta nihil
-          quasi beatae adipisci officia fugit. Fuga, obcaecati! Voluptate, earum
-          consequuntur. Quis consectetur omnis magni nihil eius magnam voluptate
-          repellat nobis itaque, voluptatibus distinctio aliquid ab eligendi
-          saepe cupiditate eos harum recusandae fugiat atque praesentium quo.
+          {postCont.cont}
           <br />
           Nostrum unde voluptates nam suscipit quas, culpa, sed harum modi vitae
           qui sequi dignissimos adipisci minus excepturi exercitationem iste
