@@ -114,7 +114,7 @@ const SinglePost = () => {
           aut perspiciatis similique id repellat, sit eius quae.
         </p>
       </div>
-      <Menu />
+      <Menu cat={ postCont.cat} />
     </div>
   );
 };
