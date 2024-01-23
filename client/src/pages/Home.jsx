@@ -50,11 +50,10 @@ const Home = () => {
   const [posts, setposts] = useState([])
   
   useEffect(() => {
-    console.log("ACTUALLY WORKING");
+    
     const fetchPosts = async () => {
       
       try {
-
         const res = await axios.get(`http://localhost:5000/api/posts/${cat}`);
         setposts(res.data)
         console.log(res.data)
@@ -64,8 +63,6 @@ const Home = () => {
       
     };
     fetchPosts();
-    
-
   }, [cat])
   
   return (
