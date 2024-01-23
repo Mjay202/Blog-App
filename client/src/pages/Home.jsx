@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // const dummyPosts = [
 //   {
@@ -43,6 +43,10 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 
+  const location = useLocation();
+  const cat = location.search
+  console.log(cat)
+
   const [posts, setposts] = useState([])
   
   useEffect(() => {
@@ -51,7 +55,7 @@ const Home = () => {
       
       try {
 
-        const res = await axios.get("http://localhost:5000/api/posts/");
+        const res = await axios.get(`http://localhost:5000/api/posts/${cat}`);
         setposts(res.data)
         console.log(res.data)
       } catch (err) {
@@ -60,9 +64,9 @@ const Home = () => {
       
     };
     fetchPosts();
-    console.log(" EVEN ACTUALLY WORKING");
+    
 
-  }, [])
+  }, [cat])
   
   return (
     <div className="home">
