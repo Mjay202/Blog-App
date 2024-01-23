@@ -44,7 +44,7 @@ const Menu = ({cat}) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/posts/${cat}`);
+        const res = await axios.get(`http://localhost:5000/api/posts/?cat=${cat}`);
         setposts(res.data);
         console.log(res.data);
       } catch (err) {
