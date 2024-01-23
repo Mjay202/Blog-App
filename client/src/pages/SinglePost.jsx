@@ -1,13 +1,14 @@
 import axios from "axios";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import edit from "../assets/edit.png";
 import del from "../assets/delete.png";
 import Menu from "../components/Menu";
+import { AuthContext } from "../context/authContext";
 
 const SinglePost = () => {
-
+  const { currentUser } = useContext(AuthContext);
   const location = useLocation();
   const id = location.pathname.split('/')[2];
   console.log(id);
@@ -40,16 +41,16 @@ const SinglePost = () => {
           />
           <div className="info">
             <div className="username">John</div>
-            <div>Posted {moment(postCont.date).fromNow()}</div>
+            { postCont.date && (<div>Posted {moment(postCont.date).fromNow()}</div>)}
           </div>
-          <div className="modify">
+        { currentUser.id === postCont.uid && (<div className="modify">
             <Link to="/create?/edit=2">
               <img src={edit} alt="" />
             </Link>
             <Link>
               <img src={del} alt="" />
             </Link>
-          </div>
+          </div>)}
         </div>
 
         <h1 className="title">{ postCont.title}</h1>
