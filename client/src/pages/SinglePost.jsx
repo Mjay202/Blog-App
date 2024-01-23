@@ -20,7 +20,7 @@ const SinglePost = () => {
     const fetchpostCont = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
-        setpostCont(res.data[0]);
+        setpostCont(res.data);
         console.log(res.data);
       } catch (err) {
         console.log(err);
@@ -40,10 +40,10 @@ const SinglePost = () => {
             className="userimg"
           />
           <div className="info">
-            <div className="username">John</div>
+            <div className="username">{ postCont.uname}</div>
             { postCont.date && (<div>Posted {moment(postCont.date).fromNow()}</div>)}
           </div>
-        { currentUser.id === postCont.uid && (<div className="modify">
+        { currentUser.uname === postCont.uname && (<div className="modify">
             <Link to="/create?/edit=2">
               <img src={edit} alt="" />
             </Link>
