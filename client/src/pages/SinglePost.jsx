@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import edit from "../assets/edit.png";
@@ -39,7 +40,7 @@ const SinglePost = () => {
           />
           <div className="info">
             <div className="username">John</div>
-            <div>Posted 2 days ago</div>
+            <div>Posted {moment(postCont.date).fromNow()}</div>
           </div>
           <div className="modify">
             <Link to="/create?/edit=2">
