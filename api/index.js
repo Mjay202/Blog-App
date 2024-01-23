@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/user", userRoute)
-app.use("/api/post", postRoute)
+app.use("/api/posts", postRoute)
 app.use("/api/auth", authRoute)
 
 app.listen(5000, () =>
