@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useLocation } from 'react-router-dom';
 
 
 const Create = () => {
   
 const [value, setValue] = useState("Let's publish!");
+const [title, setTitle] = useState("");
+const [File, setFile] = useState(null);
+const [cat, setCat] = useState("");
   
+  const location = useLocation().search
+  console.log(location);
   return (
     <div className="create">
       <div className="content">
@@ -29,7 +35,7 @@ const [value, setValue] = useState("Let's publish!");
           <span>
             <b> Visibility: </b> Public
           </span>
-          <input type="file" style={{ display: "none" }} />
+          <input type="file"/>
           <label className="file" htmlFor="file">
             Upload Image
           </label>

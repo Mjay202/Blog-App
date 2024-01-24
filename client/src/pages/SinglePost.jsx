@@ -31,6 +31,7 @@ const SinglePost = () => {
       }
     };
     fetchpostCont();
+    console.log(postCont.id)
   }, [id]);
 
   const handleDelete = async() => {
@@ -61,7 +62,7 @@ const SinglePost = () => {
           </div>
           {currentUser && currentUser.uname === postCont.uname && (
             <div className="modify">
-              <Link to="/create?/edit=2">
+              <Link to={`/create/?edit=${id}`}>
                 <img src={edit} alt="" />
               </Link>
               <Link>
