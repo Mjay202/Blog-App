@@ -1,22 +1,52 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useLocation } from 'react-router-dom';
 
 
 const Create = () => {
+   
+  const [postCont, setpostCont] = useState({});
+  const [value, setValue] = useState('');
+  const [title, setTitle] = useState("");
+  const [File, setFile] = useState(null);
+  const [cat, setCat] = useState("");
   
-const [value, setValue] = useState("Let's publish!");
-const [title, setTitle] = useState("");
-const [File, setFile] = useState(null);
-const [cat, setCat] = useState("");
+  const editId = useLocation().search.split("=")[1]
+
+
+  const handleUpdate = () => {
+    
+  }
+  const handleCreate = () => {
+    
+  }
+
+  useEffect(() => {
+    const fetchpostCont = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/posts/${editId}`);
+        setpostCont(res.data);
+        setValue(res.data.cont);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+   if (editId) fetchpostCont();
+    console.log(postCont.id);
+  }, [editId]);
+
   
-  const location = useLocation().search
-  console.log(location);
+
+
+
+  
   return (
     <div className="create">
       <div className="content">
-        <input type="text" name="Title" id="" placeholder="Title" />
+        <input type="text" name="Title" id="" placeholder={editId? postCont.title : "Title"} />
         <div className="editorContainer">
           <ReactQuill
             className="editor"
@@ -35,13 +65,17 @@ const [cat, setCat] = useState("");
           <span>
             <b> Visibility: </b> Public
           </span>
-          <input type="file"/>
+          <input type="file" />
           <label className="file" htmlFor="file">
             Upload Image
           </label>
           <div className="buttons">
             <button>Save as a draft </button>
-            <button>Update</button>
+            {editId ? (
+              <button onClick={handleUpdate}>Update</button>
+            ) : (
+              <button onClick={handleCreate}>Create</button>
+            )}
           </div>
         </div>
         <div className="item">
@@ -67,9 +101,8 @@ const [cat, setCat] = useState("");
             <label htmlFor="lifestyle">Lifestyle</label>
           </div>
           <div className="cat">
-
-          <input type="radio" name="cat" value="politics" id="politics" />
-          <label htmlFor="politics">Politics</label>
+            <input type="radio" name="cat" value="politics" id="politics" />
+            <label htmlFor="politics">Politics</label>
           </div>
         </div>
       </div>
