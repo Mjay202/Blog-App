@@ -10,6 +10,7 @@ const Create = () => {
   const [postCont, setpostCont] = useState({});
   const [value, setValue] = useState('');
   const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   const [File, setFile] = useState(null);
   const [cat, setCat] = useState("");
   
@@ -29,6 +30,8 @@ const Create = () => {
         const res = await axios.get(`http://localhost:5000/api/posts/${editId}`);
         setpostCont(res.data);
         setValue(res.data.cont);
+        setTitle(res.data.title);
+        setDesc(res.data.desc);
         console.log(res.data);
       } catch (err) {
         console.log(err);
@@ -46,7 +49,22 @@ const Create = () => {
   return (
     <div className="create">
       <div className="content">
-        <input type="text" name="Title" id="" placeholder={editId? postCont.title : "Title"} />
+        <input
+          type="text"
+          name="title"
+          id=""
+          value={editId ? title : null}
+          placeholder="Title"
+        />
+
+        <input
+          type="text"
+          name="desc"
+          id=""
+          value={editId ? desc : null}
+          placeholder="Brief description of post.."
+        />
+
         <div className="editorContainer">
           <ReactQuill
             className="editor"
