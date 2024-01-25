@@ -1,12 +1,15 @@
 import axios from "axios";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+
 
 const Create = () => {
   const navigate = useNavigate();
+   const { currentUser } = useContext(AuthContext);
 
   // NICE! BUT BETTER STILL, COULD HAVE PASSED A POST PROP FROM <SinglePost> instead of editID.
   // Going to leave it regardless!!!
@@ -91,7 +94,7 @@ const Create = () => {
           cat: cat,
           date: moment(Date.now()).format("YY-MM-DD HH:MM:SS"),
           cont: value,
-          uid: postCont.uid
+          uid: currentUser.id
         },
         { withCredentials: true }
       );
