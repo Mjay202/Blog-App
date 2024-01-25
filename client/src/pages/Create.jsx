@@ -69,7 +69,7 @@ const Create = () => {
           desc,
           img: imgURL ? imgURL : "",
           cat: cat,
-          date: moment(Date.now()).format("YY-MM-DD HH:MM:SS"),
+          date: moment(Date.now()).format("YYYY-MM-DD HH:MM:SS"),
           cont: value,
         },
         { withCredentials: true }
@@ -92,7 +92,7 @@ const Create = () => {
           desc,
           img: imgURL ? imgURL : "",
           cat: cat,
-          date: moment(Date.now()).format("YY-MM-DD HH:MM:SS"),
+          date: moment(Date.now()).format("YYYY-MM-DD HH:MM:SS"),
           cont: value,
           uid: currentUser.id
         },
