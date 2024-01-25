@@ -67,11 +67,11 @@ export const updatePost = (req, res) => {
   jwt.verify(token, process.env.JWT_KEY, (err, userInfo) => {
     if (err) return res.status(403).json("Token is invalid");
 
-    // IF TOKEN IS VALID, DELETE NOW
+    // IF TOKEN IS VALID, UPDATE NOW
 
     const postId = req.params.id;
 
-    const q = "DELETE FROM posts WHERE `id` = ? AND `uid` = ?";
+    const q = "UPDATE posts SET  WHERE `id` = ? AND `uid` = ?";
 
     db.query(q, [postId, userInfo.id], (err, data) => {
       if (err) return res.status(403).json("You can not delete this post!");

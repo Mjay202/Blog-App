@@ -6,40 +6,60 @@ import { useLocation } from 'react-router-dom';
 
 
 const Create = () => {
-   
-  const [postCont, setpostCont] = useState({});
-  const [value, setValue] = useState('');
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [File, setFile] = useState(null);
-  const [cat, setCat] = useState("");
-  
-  const editId = useLocation().search.split("=")[1]
-
-
-  const handleUpdate = () => {
+const editId = useLocation().search.split("=")[1];
+    useEffect(() => {
+      const fetchpostCont = async () => {
+        try {
+          const res = await axios.get(
+            `http://localhost:5000/api/posts/${editId}`
+          );
+          setpostCont(res.data);
+          setValue(res.data.cont);
+          setTitle(res.data.title);
+          setDesc(res.data.desc);
+          console.log(res.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      if (editId) fetchpostCont();
+    }, [editId]);
     
+    const [value, setValue] = useState('');
+    const [title, setTitle] = useState("");
+    const [desc, setDesc] = useState("");
+    const [File, setFile] = useState(null);
+    const [cat, setCat] = useState("");
+    
+  const [postCont, setpostCont] = useState({});
+  
+  
+  
+  
+
+
+  const handleUpdate = async() => {
+    
+    try {
+      const [newPostCont, setNewPostCont] = useState((prev) => ({
+        ...prev,
+        title: title,
+        desc: desc,
+        img: "",
+        cat: cat,
+        date: "",
+        cont: value,
+      }));
+      console.log(newPostCont);
+    } catch (err) {
+      
+    }
   }
   const handleCreate = () => {
     
   }
 
-  useEffect(() => {
-    const fetchpostCont = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/posts/${editId}`);
-        setpostCont(res.data);
-        setValue(res.data.cont);
-        setTitle(res.data.title);
-        setDesc(res.data.desc);
-        console.log(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-   if (editId) fetchpostCont();
-    console.log(postCont.id);
-  }, [editId]);
+
 
   
 
@@ -54,6 +74,7 @@ const Create = () => {
           name="title"
           id=""
           value={editId ? title : null}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
         />
 
@@ -62,6 +83,7 @@ const Create = () => {
           name="desc"
           id=""
           value={editId ? desc : null}
+          onChange={(e) => setDesc(e.target.value)}
           placeholder="Brief description of post.."
         />
 
