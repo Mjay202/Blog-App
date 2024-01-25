@@ -35,7 +35,23 @@ const editId = useLocation().search.split("=")[1];
   const [newPostCont, setNewPostCont] = useState({});
   
   
-  
+  const upload = async() => {
+    try {
+      const formData = new FormData();
+      formData.append("file", File)
+
+      const res = await axios.post(
+        "http://localhost:5000/api/upload",
+        formData,
+        { withCredentials: true }
+      );
+      console.log(File)
+      console.log(res.data);
+      
+    } catch (err) {
+      console.log(err)
+    }
+  }
   
 
 
@@ -58,7 +74,7 @@ const editId = useLocation().search.split("=")[1];
      console.log(newPostCont);
   }
   const handleCreate = () => {
-    
+    upload();
   }
 
 
@@ -107,7 +123,7 @@ const editId = useLocation().search.split("=")[1];
           <span>
             <b> Visibility: </b> Public
           </span>
-          <input type="file" />
+          <input type="file" id='file' style={{display: "none"} } onChange={e=>setFile(e.target.files[0])}/>
           <label className="file" htmlFor="file">
             Upload Image
           </label>
@@ -123,27 +139,27 @@ const editId = useLocation().search.split("=")[1];
         <div className="item">
           <h1>Category</h1>
           <div className="cat">
-            <input type="radio" name="cat" value="art" id="art" />
+            <input type="radio" name="cat" value="art" id="art" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="art">Art</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="science" id="Sscience" />
+            <input type="radio" name="cat" value="science" id="Sscience"onChange={e=>setCat(e.target.value)} />
             <label htmlFor="science">Science</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="technology" id="technology" />
+            <input type="radio" name="cat" value="technology" id="technology" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="technology">Technolology</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="movies" id="movies" />
+            <input type="radio" name="cat" value="movies" id="movies" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="movies">Movies</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="lifestyle" id="lifestyle" />
+            <input type="radio" name="cat" value="lifestyle" id="lifestyle" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="lifestyle">Lifestyle</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="politics" id="politics" />
+            <input type="radio" name="cat" value="politics" id="politics" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="politics">Politics</label>
           </div>
         </div>

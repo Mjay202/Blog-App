@@ -5,6 +5,8 @@ import postRoute from "./routes/posts.js"
 import authRoute from "./routes/auth.js"
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+// MULTER FOR FILE STORAGE
+import multer from "multer"; 
 
 
 dotenv.config();
@@ -19,6 +21,23 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+// USING MULTER...
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "../client/public/upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/api/upload", upload.single("file"), function (req, res) {
+  const file = req.file
+  res.status(200).json(file.filename);
+});
 
 app.use(express.json());
 app.use(cookieParser());
