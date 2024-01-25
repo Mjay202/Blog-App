@@ -81,7 +81,7 @@ const editId = useLocation().search.split("=")[1];
      
     );
       console.log(res.data);
-       navigate(`/posts/${editId}`);
+       navigate(`/post/${editId}`);
  
     } catch (err) {
       console.log(err);
