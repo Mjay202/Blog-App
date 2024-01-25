@@ -6,6 +6,10 @@ import { useLocation } from 'react-router-dom';
 
 
 const Create = () => {
+
+  // NICE! BUT BETTER STILL, COULD HAVE PASSED A POST PROP FROM <SinglePost> instead of editID.
+  // Going to leave it regardless!!!
+
 const editId = useLocation().search.split("=")[1];
     useEffect(() => {
       const fetchpostCont = async () => {
@@ -45,8 +49,7 @@ const editId = useLocation().search.split("=")[1];
         formData,
         { withCredentials: true }
       );
-      console.log(File)
-      console.log(res.data);
+      return res.data;
       
     } catch (err) {
       console.log(err)
@@ -74,7 +77,7 @@ const editId = useLocation().search.split("=")[1];
      console.log(newPostCont);
   }
   const handleCreate = () => {
-    upload();
+    const imgURL = upload();
   }
 
 
@@ -139,27 +142,27 @@ const editId = useLocation().search.split("=")[1];
         <div className="item">
           <h1>Category</h1>
           <div className="cat">
-            <input type="radio" name="cat" value="art" id="art" onChange={e=>setCat(e.target.value)}/>
+            <input type="radio" checked={postCont.cat === "art"} name="cat" value="art" id="art" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="art">Art</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="science" id="Sscience"onChange={e=>setCat(e.target.value)} />
+            <input type="radio" checked={postCont.cat === "science"} name="cat" value="science" id="Sscience"onChange={e=>setCat(e.target.value)} />
             <label htmlFor="science">Science</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="technology" id="technology" onChange={e=>setCat(e.target.value)}/>
+            <input type="radio" checked={postCont.cat === "technology"} name="cat" value="technology" id="technology" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="technology">Technolology</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="movies" id="movies" onChange={e=>setCat(e.target.value)}/>
+            <input type="radio" checked={postCont.cat === "movies"} name="cat" value="movies" id="movies" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="movies">Movies</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="lifestyle" id="lifestyle" onChange={e=>setCat(e.target.value)}/>
+            <input type="radio" checked={postCont.cat === "lifestyle"} name="cat" value="lifestyle" id="lifestyle" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="lifestyle">Lifestyle</label>
           </div>
           <div className="cat">
-            <input type="radio" name="cat" value="politics" id="politics" onChange={e=>setCat(e.target.value)}/>
+            <input type="radio" checked={postCont.cat === "politics"} name="cat" value="politics" id="politics" onChange={e=>setCat(e.target.value)}/>
             <label htmlFor="politics">Politics</label>
           </div>
         </div>
