@@ -32,16 +32,17 @@ const editId = useLocation().search.split("=")[1];
     const [cat, setCat] = useState("");
     
   const [postCont, setpostCont] = useState({});
+  const [newPostCont, setNewPostCont] = useState({});
   
   
   
   
 
 
-  const handleUpdate = async() => {
-    
+  const handleUpdate = async(e) => {
+    e.preventDefault()
     try {
-      const [newPostCont, setNewPostCont] = useState((prev) => ({
+     setNewPostCont((prev) => ({
         ...prev,
         title: title,
         desc: desc,
@@ -50,10 +51,11 @@ const editId = useLocation().search.split("=")[1];
         date: "",
         cont: value,
       }));
-      console.log(newPostCont);
+     
     } catch (err) {
       
     }
+     console.log(newPostCont);
   }
   const handleCreate = () => {
     
