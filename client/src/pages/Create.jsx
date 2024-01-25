@@ -172,7 +172,7 @@ const Create = () => {
           <div className="cat">
             <input
               type="radio"
-              checked={postCont.cat === "art"}
+              
               name="cat"
               value="art"
               id="art"
@@ -183,7 +183,7 @@ const Create = () => {
           <div className="cat">
             <input
               type="radio"
-              checked={ postCont.cat === "science"}
+             
               name="cat"
               value="science"
               id="Sscience"
@@ -194,7 +194,7 @@ const Create = () => {
           <div className="cat">
             <input
               type="radio"
-              checked={ postCont.cat === "technology"}
+              
               name="cat"
               value="technology"
               id="technology"
@@ -205,7 +205,7 @@ const Create = () => {
           <div className="cat">
             <input
               type="radio"
-              checked={ postCont.cat === "movies"}
+             
               name="cat"
               value="movies"
               id="movies"
@@ -216,7 +216,7 @@ const Create = () => {
           <div className="cat">
             <input
               type="radio"
-              checked={ postCont.cat === "lifestyle"}
+             
               name="cat"
               value="lifestyle"
               id="lifestyle"
@@ -227,7 +227,7 @@ const Create = () => {
           <div className="cat">
             <input
               type="radio"
-              checked={ postCont.cat === "politics"}
+              
               name="cat"
               value="politics"
               id="politics"
