@@ -71,8 +71,11 @@ export const updatePost = (req, res) => {
 
     const postId = req.params.id;
 
-    const q = "UPDATE posts SET  WHERE `id` = ? AND `uid` = ?";
+    const q = "UPDATE posts SET   WHERE `id` = ? AND `uid` = ?";
 
+    const values = [
+      req.body.title
+    ]
     db.query(q, [postId, userInfo.id], (err, data) => {
       if (err) return res.status(403).json("You can not update this post!");
 

@@ -65,7 +65,7 @@ const editId = useLocation().search.split("=")[1];
     try {
      
     const res = await axios.put(
-      `http://localhost:5000/api/posts${editId}`,
+      `http://localhost:5000/api/posts/${editId}`,
       {
         title,
         desc,
@@ -76,13 +76,16 @@ const editId = useLocation().search.split("=")[1];
       },
       { withCredentials: true }
     );
-     
+      console.log(res.data);
  
     } catch (err) {
-      
+      console.log(err);
     }
-     console.log(newPostCont);
+    
+    
   }
+
+
   const handleCreate = () => {
        e.preventDefault()
     const imgURL = upload();
