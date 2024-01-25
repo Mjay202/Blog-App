@@ -74,9 +74,9 @@ export const updatePost = (req, res) => {
     const q = "UPDATE posts SET  WHERE `id` = ? AND `uid` = ?";
 
     db.query(q, [postId, userInfo.id], (err, data) => {
-      if (err) return res.status(403).json("You can not delete this post!");
+      if (err) return res.status(403).json("You can not update this post!");
 
-      return res.status(200).json("Post has been deleted successfully");
+      return res.status(200).json("Post has been updated successfully");
     });
   });
 };

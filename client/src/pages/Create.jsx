@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -36,7 +37,7 @@ const editId = useLocation().search.split("=")[1];
     const [cat, setCat] = useState("");
     
   const [postCont, setpostCont] = useState({});
-  const [newPostCont, setNewPostCont] = useState({});
+ 
   
   
   const upload = async() => {
@@ -60,23 +61,30 @@ const editId = useLocation().search.split("=")[1];
 
   const handleUpdate = async(e) => {
     e.preventDefault()
+     const imgURL = upload();
     try {
-     setNewPostCont((prev) => ({
-        ...prev,
-        title: title,
-        desc: desc,
-        img: "",
-        cat: cat,
-        date: "",
-        cont: value,
-      }));
      
+    const res = await axios.put(
+      `http://localhost:5000/api/posts${editId}`,
+      {
+        title,
+        desc,
+        img: File? imgURL : "",
+        cat: cat,
+        date: moment(Date.now()).format("YY-MM-DD HH:MM:SS"),
+        cont: value,
+      },
+      { withCredentials: true }
+    );
+     
+ 
     } catch (err) {
       
     }
      console.log(newPostCont);
   }
   const handleCreate = () => {
+       e.preventDefault()
     const imgURL = upload();
   }
 
