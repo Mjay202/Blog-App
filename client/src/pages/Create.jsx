@@ -96,7 +96,7 @@ const Create = () => {
         { withCredentials: true }
       );
       console.log(res.data);
-      navigate(`/post/${editId}`);
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
