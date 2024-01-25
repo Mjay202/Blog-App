@@ -3,10 +3,12 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const Create = () => {
+
+  const navigate = useNavigate();
 
   // NICE! BUT BETTER STILL, COULD HAVE PASSED A POST PROP FROM <SinglePost> instead of editID.
   // Going to leave it regardless!!!
@@ -33,6 +35,7 @@ const editId = useLocation().search.split("=")[1];
     const [value, setValue] = useState('');
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
+    const [imageURL, setImageURL] = useState("");
     const [File, setFile] = useState(null);
     const [cat, setCat] = useState("");
     
@@ -61,7 +64,7 @@ const editId = useLocation().search.split("=")[1];
 
   const handleUpdate = async(e) => {
     e.preventDefault()
-     const imgURL = upload();
+     const imgURL = File? upload() : imageURL;
     try {
      
     const res = await axios.put(
@@ -69,14 +72,16 @@ const editId = useLocation().search.split("=")[1];
       {
         title,
         desc,
-        img: File? imgURL : "",
+        img: imgURL? imgURL :  "",
         cat: cat,
         date: moment(Date.now()).format("YY-MM-DD HH:MM:SS"),
         cont: value,
       },
       { withCredentials: true }
+     
     );
       console.log(res.data);
+       navigate(`/posts/${editId}`);
  
     } catch (err) {
       console.log(err);
@@ -137,10 +142,15 @@ const editId = useLocation().search.split("=")[1];
           <span>
             <b> Visibility: </b> Public
           </span>
+          <div className="imgUpload">
+
+          <input type="text" id='imgURL' placeholder="URL"  onChange={e=>setImageURL(e.target.value)}/>
           <input type="file" id='file' style={{display: "none"} } onChange={e=>setFile(e.target.files[0])}/>
           <label className="file" htmlFor="file">
             Upload Image
-          </label>
+            </label>
+            
+          </div>
           <div className="buttons">
             <button>Save as a draft </button>
             {editId ? (

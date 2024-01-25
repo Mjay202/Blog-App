@@ -82,9 +82,9 @@ export const updatePost = (req, res) => {
       req.body.date,
       req.body.cont
     ];
-    
+
     db.query(q, [...values, postId, userInfo.id], (err, data) => {
-      if (err) return res.status(403).json("You can not update this post!");
+      if (err) return res.status(403).json("You can not update this post!" + err);
 
       return res.status(200).json("Post has been updated successfully");
     });
